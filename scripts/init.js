@@ -40,14 +40,14 @@ function cleanDirectory(dir) {
 }
 
 function getField(content, field) {
-  const regex = new RegExp(`^${field}:\\s*(.+)$`, 'm');
+  const regex = new RegExp(`^${field}:\s*(.+)$`, 'm');
   const match = content.match(regex);
   return match ? match[1].trim() : '';
 }
 
 function getBody(content) {
   // Remove frontmatter
-  const match = content.match(/^---\\s*\\n[\\s\\S]*?\\n---\\s*\\n(.*)$/);
+  const match = content.match(/^---\s*\n[\s\S]*?\n---\s*\n(.*)$/);
   return match ? match[1] : content;
 }
 

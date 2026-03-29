@@ -54,16 +54,16 @@ function testAgentFile(filePath) {
 }
 
 function main() {
-  log('\\n========================================', 'bold');
+  log('\n========================================', 'bold');
   log('  Agency Agents for OpenCode', 'bold');
   log('  Test Script', 'bold');
-  log('========================================\\n', 'bold');
+  log('========================================\n', 'bold');
   
   // Check if initialized
   if (!fs.existsSync(AGENTS_DIR)) {
     log('❌ Agents directory not found!', 'red');
     log('Please run initialization first:', 'yellow');
-    log('  npm run init\\n', 'yellow');
+    log('  npm run init\n', 'yellow');
     process.exit(1);
   }
   
@@ -74,7 +74,7 @@ function main() {
     process.exit(1);
   }
   
-  log(`🔍 Testing ${agentFiles.length} agent files...\\n`, 'blue');
+  log(`🔍 Testing ${agentFiles.length} agent files...\n`, 'blue');
   
   let passed = 0;
   let failed = 0;
@@ -97,32 +97,32 @@ function main() {
     }
   }
   
-  log('\\n========================================', 'bold');
+  log('\n========================================', 'bold');
   log('  Test Results', 'bold');
   log('========================================', 'bold');
-  log(`\\n✅ Passed: ${passed}/${agentFiles.length}`, 'green');
+  log(`\n✅ Passed: ${passed}/${agentFiles.length}`, 'green');
   
   if (failed > 0) {
-    log(`❌ Failed: ${failed}/${agentFiles.length}\\n`, 'red');
+    log(`❌ Failed: ${failed}/${agentFiles.length}\n`, 'red');
     
     log('Failed Agents:', 'bold');
     for (const { file, issues } of failedAgents) {
-      log(`\\n${file}:`, 'red');
+      log(`\n${file}:`, 'red');
       for (const issue of issues) {
         log(`  - ${issue}`, 'yellow');
       }
     }
     
-    log('\\n⚠️  Please fix the failed agents or re-run init/update.', 'yellow');
+    log('\n⚠️  Please fix the failed agents or re-run init/update.', 'yellow');
     process.exit(1);
   } else {
-    log(`\\n🎉 All agents passed validation!`, 'green');
+    log(`\n🎉 All agents passed validation!`, 'green');
     
     // Check version info
     const versionPath = path.join(PLUGIN_DIR, 'version.json');
     if (fs.existsSync(versionPath)) {
       const version = JSON.parse(fs.readFileSync(versionPath, 'utf8'));
-      log(`\\n📊 Agent count: ${version.currentAgentCount || version.agentCount || 'unknown'}`, 'blue');
+      log(`\n📊 Agent count: ${version.currentAgentCount || version.agentCount || 'unknown'}`, 'blue');
       if (version.convertedAt) {
         log(`🕐 Initialized: ${version.convertedAt}`, 'blue');
       }
@@ -131,11 +131,11 @@ function main() {
       }
     }
     
-    log('\\n💡 To use agents in OpenCode:', 'reset');
+    log('\n💡 To use agents in OpenCode:', 'reset');
     log('   1. Ensure plugin is in your opencode.json', 'reset');
     log('   2. Restart OpenCode', 'reset');
     log('   3. Use @mention to invoke agents (e.g., @frontend-developer)', 'reset');
-    log('\\n✅ Ready to use!\\n', 'green');
+    log('\n✅ Ready to use!\n', 'green');
   }
 }
 

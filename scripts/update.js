@@ -39,13 +39,13 @@ function cleanDirectory(dir) {
 }
 
 function getField(content, field) {
-  const regex = new RegExp(`^${field}:\\s*(.+)$`, 'm');
+  const regex = new RegExp(`^${field}:\s*(.+)$`, 'm');
   const match = content.match(regex);
   return match ? match[1].trim() : '';
 }
 
 function getBody(content) {
-  const match = content.match(/^---\\s*\\n[\\s\\S]*?\\n---\\s*\\n(.*)$/);
+  const match = content.match(/^---\s*\n[\\s\\S]*?\n---\s*\n(.*)$/);
   return match ? match[1] : content;
 }
 
@@ -106,16 +106,16 @@ ${body}`;
 }
 
 function main() {
-  log('\\n========================================', 'bold');
+  log('\n========================================', 'bold');
   log('  Agency Agents for OpenCode', 'bold');
   log('  Update Script', 'bold');
-  log('========================================\\n', 'bold');
+  log('========================================\n', 'bold');
   
   // Check if initialized
   if (!fs.existsSync(AGENTS_DIR)) {
     log('❌ Agents directory not found!', 'red');
     log('Please run initialization first:', 'yellow');
-    log('  npm run init\\n', 'yellow');
+    log('  npm run init\n', 'yellow');
     process.exit(1);
   }
   
@@ -138,7 +138,7 @@ function main() {
   ensureDirectory(AGENTS_DIR);
   
   // Clone latest repo
-  log('\\n📦 Fetching latest agency-agents repository...', 'blue');
+  log('\n📦 Fetching latest agency-agents repository...', 'blue');
   try {
     execSync(`git clone --depth 1 ${AGENCY_REPO} ${TEMP_DIR}`, { 
       stdio: 'pipe',
@@ -160,7 +160,7 @@ function main() {
   }
   
   // Convert agents
-  log('\\n🔄 Converting agents...', 'blue');
+  log('\n🔄 Converting agents...', 'blue');
   
   const agentDirs = [
     'academic', 'design', 'engineering', 'game-development', 
@@ -218,13 +218,13 @@ function main() {
     JSON.stringify(versionInfo, null, 2)
   );
   
-  log('\\n✅ Update complete!', 'green');
-  log(`\\n📊 Summary:`, 'bold');
+  log('\n✅ Update complete!', 'green');
+  log(`\n📊 Summary:`, 'bold');
   log(`   • New agents: ${newAgents}`, 'green');
   log(`   • Updated agents: ${updatedAgents}`, 'blue');
   log(`   • Total agents: ${versionInfo.currentAgentCount}`, 'reset');
-  log(`\\n📝 Updated: ${versionInfo.updatedAt}`, 'blue');
-  log('\\n⚠️  Remember to restart OpenCode to load new agents\\n', 'yellow');
+  log(`\n📝 Updated: ${versionInfo.updatedAt}`, 'blue');
+  log('\n⚠️  Remember to restart OpenCode to load new agents\n', 'yellow');
 }
 
 main();
