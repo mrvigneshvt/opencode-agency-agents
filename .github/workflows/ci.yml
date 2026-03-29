@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci || npm install
+    
+    - name: Initialize agents
+      run: npm run init
+      timeout-minutes: 5
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Check agent count
+      run: |
+        AGENT_COUNT=$(ls agents/*.md 2>/dev/null | wc -l)
+        echo "Total agents: $AGENT_COUNT"
+        if [ "$AGENT_COUNT" -lt 50 ]; then
+          echo "❌ Expected at least 50 agents, found $AGENT_COUNT"
+          exit 1
+        fi
+        echo "✅ Agent count looks good"
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    
+    - name: Install dependencies
+      run: npm ci || npm install
+    
+    - name: Check code style
+      run: |
+        if [ -f .eslintrc.js ] || [ -f .eslintrc.json ]; then
+          npx eslint scripts/ index.js
+        else
+          echo "No ESLint config found, skipping"
+        fi

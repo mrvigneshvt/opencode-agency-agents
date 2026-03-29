@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Temp directories
+*.temp/
+temp/
+tmp/
+
+# Backups
+agents-backup/
+*.backup
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build outputs (if any)
+dist/
+build/
+
+# Version file is auto-generated but should be committed
+# version.json

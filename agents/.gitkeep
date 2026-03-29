@@ -1,0 +1,5 @@
+# Agency Agents
+
+Converted agents for OpenCode. Run `npm run init` to populate this directory.
+
+**Note:** This directory is auto-generated. Do not manually edit files here - they will be overwritten on update.
