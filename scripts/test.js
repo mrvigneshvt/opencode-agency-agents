@@ -1,6 +1,9 @@
-const { execSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PLUGIN_DIR = path.dirname(__dirname);
 const AGENTS_DIR = path.join(PLUGIN_DIR, 'agents');

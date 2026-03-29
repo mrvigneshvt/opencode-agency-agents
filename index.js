@@ -1,16 +1,15 @@
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import { fileURLToPath } from 'url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PLUGIN_DIR = __dirname;
 const AGENTS_DIR = path.join(PLUGIN_DIR, 'agents');
 
-module.exports = {
-  name: 'agency-agents',
-  version: '1.0.0',
-  
-  hooks: {
-    // Hook into config to register all agents
-    'config': (config) => {
+export const AgencyAgentsPlugin = async ({ client, directory }) => {
+  return {
+    config: async (config) => {
       // Check if agents directory exists
       if (!fs.existsSync(AGENTS_DIR)) {
         console.warn('⚠️  Agency Agents: Agents not initialized. Run "npm run init" in the plugin directory.');
@@ -50,5 +49,5 @@ module.exports = {
         }
       };
     }
-  }
+  };
 };

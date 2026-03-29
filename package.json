@@ -2,6 +2,7 @@
   "name": "opencode-agency-agents",
   "version": "1.0.0",
   "description": "OpenCode plugin for Agency Agents - 60+ specialized AI agents",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "init": "node scripts/init.js",
@@ -19,6 +20,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/opencode-agency-agents.git"
+    "url": "https://github.com/mrvigneshvt/opencode-agency-agents.git"
   }
 }

@@ -1,7 +1,11 @@
-const { execSync } = require('child_process');
-const path = require('path');
-const fs = require('fs');
-const os = require('os');
+import { execSync } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const AGENCY_REPO = 'https://github.com/msitarzewski/agency-agents.git';
 const PLUGIN_DIR = path.dirname(__dirname);
@@ -206,7 +210,7 @@ function main() {
   log(`📝 Version info: ${path.join(PLUGIN_DIR, 'version.json')}`, 'blue');
   log('\\n💡 Next steps:', 'bold');
   log('   1. Add this plugin to your opencode.json:', 'reset');
-  log('      "plugin": ["agency-agents@git+https://github.com/YOUR_USERNAME/opencode-agency-agents.git"]', 'yellow');
+  log('      "plugin": ["agency-agents@git+https://github.com/mrvigneshvt/opencode-agency-agents.git"]', 'yellow');
   log('   2. Restart OpenCode', 'reset');
   log('   3. Use agents with @mention (e.g., @frontend-developer)', 'reset');
   log('\\n🔄 To update agents later, run: npm run update\\n', 'blue');
